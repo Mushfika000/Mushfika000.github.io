@@ -43,15 +43,15 @@ var EM='mushfikamayesha@gmail.com',KB=[
 ],FB="I couldn't find that in this portfolio, so I won't guess.\nI can answer about: skills, education, projects, certificates, Air Rover Scouting, achievements, hobbies, goals and contact details.\nFor anything else, email "+EM+".";
 function norm(s){return ' '+s.toLowerCase().replace(/[^a-z0-9+ ]+/g,' ').replace(/\s+/g,' ').trim()+' '}
 function answer(q){var n=norm(q),best=null,bs=0;KB.forEach(function(e){var s=0;e.k.forEach(function(w){var st=w.slice(-1)==='*',x=st?w.slice(0,-1):w,h=st?n.indexOf(' '+x)>-1:n.indexOf(' '+x+' ')>-1;if(h)s+=w.indexOf(' ')>-1?2:1});if(s>bs){bs=s;best=e}});return best?best.a:FB}
-var chat=document.getElementById('chat'),fab=document.getElementById('askFab'),chm=document.getElementById('chm'),ci=document.getElementById('ci'),started=false;
+var chat=document.getElementById('chat'),fab=document.getElementById('askFab'),chm=document.getElementById('chm'),cin=document.getElementById('ci'),started=false;
 function add(c,t){var d=document.createElement('div');d.className='msg '+c;d.textContent=t;chm.appendChild(d);chm.scrollTop=chm.scrollHeight;return d}
 function ask(q){q=q.trim();if(!q)return;add('me',q);var b=add('bot','');b.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';setTimeout(function(){b.textContent=answer(q);chm.scrollTop=chm.scrollHeight},rm?0:550)}
 function openChat(){chat.hidden=false;fab.hidden=true;if(!started){started=true;add('bot',"Hi! I'm Mushfika's portfolio assistant.\nI can answer about her skills, education, projects, certificates, Air Rover Scouting, goals and contact details.\nI can't answer anything that isn't on this portfolio (like her phone number or family details), and I don't give opinions or general knowledge.");
 var ch=document.getElementById('chips');['What are her skills?','Tell me about her projects','Certificates','Air Rover Scouting','How to contact her?'].forEach(function(q){var b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=function(){ask(q)};ch.appendChild(b)})}
-if(fine)ci.focus()}
+if(fine)cin.focus()}
 function closeChat(){chat.hidden=true;fab.hidden=false}
 document.getElementById('askOpen').onclick=openChat;fab.onclick=openChat;document.getElementById('askClose').onclick=closeChat;
-document.getElementById('cf').onsubmit=function(e){e.preventDefault();ask(ci.value);ci.value=''};
+document.getElementById('cf').onsubmit=function(e){e.preventDefault();ask(cin.value);cin.value=''};
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!chat.hidden)closeChat()});
 document.getElementById('f').onsubmit=function(e){e.preventDefault();
 location.href='mailto:mushfikamayesha@gmail.com?subject='+encodeURIComponent(document.getElementById('ms').value||'Portfolio message')+'&body='+encodeURIComponent('From: '+document.getElementById('nm').value+'\n\n'+document.getElementById('tx').value)};
